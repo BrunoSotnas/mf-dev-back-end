@@ -1,3 +1,6 @@
+using mf_dev_back_end.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace mf_dev_back_end
 {
     public class Program
@@ -10,6 +13,10 @@ namespace mf_dev_back_end
             builder.Services.AddControllersWithViews();
             
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
             var app = builder.Build();
 
